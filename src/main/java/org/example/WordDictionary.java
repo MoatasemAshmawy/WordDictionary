@@ -10,3 +10,5 @@ public interface WordDictionary extends Remote{
     HashMap<Word,Integer> searchByName(String name) throws RemoteException;
     ArrayList<Word> getWordsList() throws RemoteException;
 }
+
+

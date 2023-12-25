@@ -13,6 +13,7 @@ public class Server{
             WordDictionaryImpl obj = new WordDictionaryImpl();
             int port = 5432;
             try { // special exception handler for registry creation
+                System.setProperty("java.rmi.server.hostname","127.0.0.1");
                 LocateRegistry.createRegistry(port);
                 System.out.println("java RMI registry created.");
             } catch (RemoteException e) {
@@ -25,7 +26,7 @@ public class Server{
             String bindLocation = "rmi://" + hostname + ":" + port + "/WordDictionary";
 
             try {
-                Naming.bind(bindLocation, obj);
+                Naming.bind(bindLocation, (WordDictionary) obj);
                 System.out.println("Word Dictionary Server is ready at:" + bindLocation);
             } catch (RemoteException e) {
                 // TODO Auto-generated catch block
